@@ -35,9 +35,20 @@
             </mu-list-item>
             <mu-list-item
               button
-              to="/login">
+              to="/login"
+              v-if="!this.$store.state.user"
+            >
               <mu-list-item-content>
-                <mu-list-item-title>登录/注册</mu-list-item-title>
+                <mu-list-item-title >登录/注册</mu-list-item-title>
+              </mu-list-item-content>
+            </mu-list-item>
+            <mu-list-item
+              button
+              to="/user"
+              v-else
+            >
+              <mu-list-item-content>
+                <mu-list-item-title >{{this.$store.state.user}}</mu-list-item-title>
               </mu-list-item-content>
             </mu-list-item>
           </mu-list>

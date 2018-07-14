@@ -7,9 +7,9 @@
       <mu-form-item prop="rebook" label="备选图书" :rules="formRules">
         <mu-text-field v-model="form.rebook"></mu-text-field>
       </mu-form-item>
-      <mu-date-input  icon="today" label="开始日期" v-model="form.begDate" type="date" label-float full-width></mu-date-input>
+      <mu-date-input  icon="today" label="开始日期" v-model="form.begDate" type="date" label-float full-width value-format="YYYY-MM-DD"></mu-date-input>
       {{form.begDate}}
-      <mu-date-input  icon="today" label="结束日期" v-model="form.endDate" type="date" label-float full-width></mu-date-input>
+      <mu-date-input  icon="today" label="结束日期" v-model="form.endDate" type="date" label-float full-width value-format="YYYY-MM-DD"></mu-date-input>
       <mu-button color="primary" @click="submit">提交</mu-button>
       <!--提示信息-->
       <mu-snackbar :color="successMessage.color" :open.sync="successMessage.open">

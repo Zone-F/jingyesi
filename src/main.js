@@ -7,7 +7,10 @@ import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import FastClick from 'fastclick'
 import axios from 'axios'
+import store from './store/index'
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
 require('./mock')
 
 Vue.use(MuseUI)
@@ -20,6 +23,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
