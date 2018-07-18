@@ -14,10 +14,10 @@ import TopicNow from 'components/activity/topic/TopicNow'
 import TopicInfo from 'components/activity/topic/TopicInfo'
 import TopicOld from 'components/activity/topic/TopicOld'
 import User from 'components/User'
-
+import store from '../store/index'
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -55,9 +55,30 @@ export default new Router({
       ]
     },
     {
-      path: '/user',
+      path: '/user/:username',
       name: '个人中心',
-      component: User
+      component: User,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const user = store.state.user
+  if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
+    if (user) { // 通过vuex state获取当前的用户名是否存在
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath} // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

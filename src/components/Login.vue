@@ -79,6 +79,8 @@ export default {
                 this.successMessage.timer = setTimeout(() => {
                   this.successMessage.open = false
                 }, this.successMessage.timeout)
+                // 路由跳转
+                this.$router.push(this.$route.query.redirect || {name: '首页'})
               }
             })
             .catch((error) => {

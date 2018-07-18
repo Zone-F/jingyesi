@@ -1,5 +1,6 @@
 <template>
-  <div>用户中心
+  <div>
+    欢迎：{{ this.$store.state.user }}
     <bottom-navigation></bottom-navigation>
   </div>
 </template>

@@ -28,13 +28,6 @@
             </mu-list-item>
             <mu-list-item
               button
-              to="/user">
-              <mu-list-item-content>
-                <mu-list-item-title>个人中心</mu-list-item-title>
-              </mu-list-item-content>
-            </mu-list-item>
-            <mu-list-item
-              button
               to="/login"
               v-if="!this.$store.state.user"
             >
@@ -43,8 +36,8 @@
               </mu-list-item-content>
             </mu-list-item>
             <mu-list-item
+              @click="go"
               button
-              to="/user"
               v-else
             >
               <mu-list-item-content>
@@ -62,6 +55,11 @@ export default {
   name: 'Nav',
   data () {
     return {
+    }
+  },
+  methods: {
+    go () {
+      this.$router.push({name: '个人中心', params: {username: this.$store.state.user}})
     }
   }
 }

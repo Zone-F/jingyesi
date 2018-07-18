@@ -1,9 +1,14 @@
 <template>
-  <div>
-    <router-view></router-view>
-    <!--底部菜单栏-->
-    <regular-bottom-nav></regular-bottom-nav>
-  </div>
+  <mu-flex direction="column" style="width: 100%;height: 100vh;">
+    <mu-flex class="is-full-width">
+        <router-view></router-view>
+    </mu-flex>
+    <!--<div class="a">3</div>-->
+    <mu-flex  class="is-full-width" >
+      <!--底部菜单栏-->
+      <regular-bottom-nav></regular-bottom-nav>
+    </mu-flex>
+  </mu-flex>
 </template>
 
 <script>
