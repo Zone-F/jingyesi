@@ -1,5 +1,5 @@
 <template>
-  <mu-flex direction="column" style="width: 100%;height: 100vh;">
+  <mu-flex direction="column" style="width: 100%;height: 100%">
     <mu-flex class="is-full-width">
         <router-view></router-view>
     </mu-flex>
@@ -20,13 +20,29 @@ export default {
     }
   },
   methods: {
+    getData () {
+      this.axios.post('api/getactdata', {})
+        .then((response) => {
+          const loading = this.$loading({})
+          if (response.status === 200) {
+            // var data = JSON.parse(response.data)
+            this.$store.commit('UPDATE', response.data)
+            loading.close()
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
   },
   components: {
     RegularBottomNav
+  },
+  created: function () {
+    this.getData()
   }
 }
 </script>
 
 <style scoped>
-
 </style>

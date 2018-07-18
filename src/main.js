@@ -3,25 +3,21 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import MuseUI from 'muse-ui'
-import 'muse-ui/dist/muse-ui.css'
 import FastClick from 'fastclick'
 import axios from 'axios'
+// VueX
 import store from './store/index'
 import Vuex from 'vuex'
-/* import vueg from 'vueg'
-import 'vueg/css/transition-min.css'
-// 转场动画
-const options = {
-  duration: '0.3', // 转场动画时长，默认为0.3，单位秒
-  firstEntryDuration: '0.6', // 首次进入应用时的渐现动画时长，默认为.6
-  sameDepthDisable: true, // url深度相同时禁用动画，默认为false
-  shadow: false, // 值为false，转场时没有阴影的层次效果
-  disable: false // 禁用转场动画，默认为false，嵌套路由默认为true
-}
-Vue.use(vueg, router, options) */
+// muse-ui
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+// muse-ui loading
+import 'muse-ui-loading/dist/muse-ui-loading.css'
+import Loading from 'muse-ui-loading'
+
+Vue.use(Loading)
 Vue.use(Vuex)
-require('./mock')
+// require('./mock')
 
 Vue.use(MuseUI)
 Vue.prototype.axios = axios

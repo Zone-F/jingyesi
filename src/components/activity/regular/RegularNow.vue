@@ -5,7 +5,7 @@
           <mu-col span="12">
                 <mu-divider></mu-divider>
                 <mu-list-item>
-                  <b>发起人</b>
+                  <b>发起人：</b>{{this.$store.state.regular.user}}
                 </mu-list-item>
           </mu-col>
         </mu-row>
@@ -13,7 +13,7 @@
           <mu-col span="12">
             <mu-divider></mu-divider>
             <mu-list-item>
-              <b>参与人员:</b>
+              <b>参与人员：</b><span v-for="user in this.$store.state.regular.users" :key="user">{{user}}</span>
             </mu-list-item>
           </mu-col>
           <mu-col span="12">
@@ -27,7 +27,7 @@
           <mu-col span="12">
             <mu-divider></mu-divider>
             <mu-list-item>
-              <b>活动时间</b>
+              <b>活动时间：</b>{{this.$store.state.regular.begdate}} -- {{this.$store.state.regular.enddate}}
             </mu-list-item>
           </mu-col>
           <mu-col span="12">
@@ -73,5 +73,7 @@ export default {
 </script>
 
 <style scoped>
-
+span{
+  padding-right: 10px;
+}
 </style>

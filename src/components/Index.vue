@@ -1,5 +1,5 @@
 <template>
-  <mu-flex direction="column" style="width: 100%;height: 100vh;">
+  <mu-flex direction="column" style="width: 100%;">
     <mu-flex class="is-full-width" fill>
       首页
     </mu-flex>

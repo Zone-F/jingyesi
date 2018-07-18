@@ -1,6 +1,7 @@
 // store index.js
 import Vue from 'vue'
 import Vuex from 'vuex'
+import regularModule from './regularModule'
 
 Vue.use(Vuex)
 // 初始化时用sessionStore.getItem('user'),这样子刷新页面就无需重新登录
@@ -19,11 +20,13 @@ const mutations = {
     window.sessionStorage.removeItem('user')
   }
 }
-
 const actions = {
 }
 export default new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  modules: {
+    regular: regularModule
+  }
 })

@@ -2,11 +2,11 @@
   <div id="app">
     <app-bar></app-bar>
     <div class="content">
-      <keep-alive>
-        <transition name="fade">
-          <router-view></router-view>
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </transition>
-      </keep-alive>
     </div>
     <!--<bottom-navigation></bottom-navigation>-->
   </div>
@@ -36,7 +36,7 @@ export default {
   flex: 1;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .8s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
