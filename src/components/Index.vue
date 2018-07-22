@@ -3,7 +3,6 @@
     <mu-flex class="is-full-width" fill>
       首页
     </mu-flex>
-    <!--<div class="a">3</div>-->
     <mu-flex  class="is-full-width" >
       <bottom-navigation></bottom-navigation>
     </mu-flex>
@@ -22,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .is-full-width{
+    width: 100%;
+  }
 </style>

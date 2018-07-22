@@ -14,13 +14,11 @@
 
 <script>
 import AppBar from 'components/comment/Nav'
-// import BottomNavigation from 'components/comment/BottomNav'
 
 export default {
   name: 'App',
   components: {
     AppBar
-    // BottomNavigation
   }
 }
 </script>
@@ -33,6 +31,7 @@ export default {
   flex-direction: column;
 }
 .content{
+  width: 100%;
   flex: 1;
 }
 .fade-enter-active, .fade-leave-active {

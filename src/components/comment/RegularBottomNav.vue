@@ -20,7 +20,5 @@ export default {
     padding-left: 0;
     padding-right: 0;
     max-width: 100%;
-    position: fixed;
-    bottom: 0
   }
 </style>

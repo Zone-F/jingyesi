@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import regularModule from './regularModule'
+import topicModule from './topicModule'
 
 Vue.use(Vuex)
 // 初始化时用sessionStore.getItem('user'),这样子刷新页面就无需重新登录
@@ -27,6 +28,7 @@ export default new Vuex.Store({
   mutations,
   actions,
   modules: {
-    regular: regularModule
+    regular: regularModule,
+    topic: topicModule
   }
 })

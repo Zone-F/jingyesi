@@ -30,9 +30,7 @@ export default {
   padding-right: 0;
 }
 .bootom-nav{
-  max-width: 100%;
-  position: fixed;
-  bottom: 0
+  width: 100%;
 }
 a{
   color: azure;

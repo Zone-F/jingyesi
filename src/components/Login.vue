@@ -18,15 +18,6 @@
           </mu-form>
         </mu-container>
       </div>
-      <!--提示信息-->
-      <mu-snackbar :color="successMessage.color" :open.sync="successMessage.open">
-        {{successMessage.message}}
-        <mu-button flat slot="action" color="#fff" @click="successMessage.open = false">OK</mu-button>
-      </mu-snackbar>
-      <mu-snackbar :color="errorMessage.color" :open.sync="errorMessage.open">
-        {{errorMessage.message}}
-        <mu-button flat slot="action" color="#fff" @click="errorMessage.open = false">OK</mu-button>
-      </mu-snackbar>
     </div>
 </template>
 
@@ -46,18 +37,6 @@ export default {
       validateForm: {
         username: '',
         password: ''
-      },
-      successMessage: {
-        color: 'success',
-        message: '登录成功',
-        open: false,
-        timeout: 3000
-      },
-      errorMessage: {
-        color: 'error',
-        message: '操作失败',
-        open: false,
-        timeout: 3000
       }
     }
   },
@@ -65,6 +44,7 @@ export default {
     submit () {
       this.$refs.form.validate().then((result) => {
         if (result) {
+          const loading = this.$loading({})
           this.axios.post('/login', {
             user: this.validateForm.username,
             pass: this.validateForm.password
@@ -73,23 +53,19 @@ export default {
               if (response.status === 200) {
                 var data = JSON.parse(response.data)
                 this.$store.commit('GET_USER', data.user)
+                loading.close()
                 // 提示信息
-                if (this.successMessage.timer) clearTimeout(this.successMessage.timer)
-                this.successMessage.open = true
-                this.successMessage.timer = setTimeout(() => {
-                  this.successMessage.open = false
-                }, this.successMessage.timeout)
+                this.$toast.success('登录成功')
                 // 路由跳转
                 this.$router.push(this.$route.query.redirect || {name: '首页'})
               }
             })
             .catch((error) => {
               console.log(error)
-              if (this.errorMessage.timer) clearTimeout(this.errorMessage.timer)
-              this.errorMessage.open = true
-              this.errorMessage.timer = setTimeout(() => {
-                this.errorMessage.open = false
-              }, this.errorMessage.timeout)
+              setTimeout(() => {
+                loading.close()
+                this.$toast.error('登录失败')
+              }, 2000)
             })
         }
       })

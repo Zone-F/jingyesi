@@ -1,10 +1,10 @@
 <template>
   <mu-container class="bootom-nav">
     <mu-bottom-nav :value.sync=this.$route.name>
-      <mu-bottom-nav-item value="主题活动" title="主题活动" icon="note_add" to="/regular/new"></mu-bottom-nav-item>
-      <mu-bottom-nav-item value="主题阅读" title="主题阅读" icon="whatshot" to="/regular" active-class></mu-bottom-nav-item>
-      <mu-bottom-nav-item value="主题信息" title="主题信息" icon="favorite" to="/regular/info"></mu-bottom-nav-item>
-      <mu-bottom-nav-item value="往期主题" title="往期主题" icon="book" to="/regular/old"></mu-bottom-nav-item>
+      <mu-bottom-nav-item value="主题活动" title="主题活动" icon="note_add" to="/Topic/new"></mu-bottom-nav-item>
+      <mu-bottom-nav-item value="主题阅读" title="主题阅读" icon="whatshot" to="/Topic" active-class></mu-bottom-nav-item>
+      <mu-bottom-nav-item value="主题信息" title="主题信息" icon="favorite" to="/Topic/info"></mu-bottom-nav-item>
+      <mu-bottom-nav-item value="往期主题" title="往期主题" icon="book" to="/Topic/old"></mu-bottom-nav-item>
     </mu-bottom-nav>
   </mu-container>
 </template>
@@ -20,7 +20,5 @@ export default {
     padding-left: 0;
     padding-right: 0;
     max-width: 100%;
-    position: fixed;
-    bottom: 0
   }
 </style>

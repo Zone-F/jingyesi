@@ -8,33 +8,19 @@
         <mu-text-field v-model="form.rebook"></mu-text-field>
       </mu-form-item>
       <mu-date-input  icon="today" label="开始日期" v-model="form.begDate" type="date" label-float full-width value-format="YYYY-MM-DD"></mu-date-input>
-      {{form.begDate}}
       <mu-date-input  icon="today" label="结束日期" v-model="form.endDate" type="date" label-float full-width value-format="YYYY-MM-DD"></mu-date-input>
-      <mu-button color="primary" @click="submit">提交</mu-button>
-      <!--提示信息-->
-      <mu-snackbar :color="successMessage.color" :open.sync="successMessage.open">
-        {{successMessage.message}}
-        <mu-button flat slot="action" color="#fff" @click="successMessage.open = false">OK</mu-button>
-      </mu-snackbar>
-      <mu-snackbar :color="errorMessage.color" :open.sync="errorMessage.open">
-        {{errorMessage.message}}
-        <mu-button flat slot="action" color="#fff" @click="errorMessage.open = false">OK</mu-button>
-      </mu-snackbar>
+      <mu-button color="secondary" @click="submit" v-loading="loading1" data-mu-loading-size="24">提交</mu-button>
     </mu-form>
   </mu-container>
 </template>
 
 <script>
-import RegularBottomNav from 'components/comment/RegularBottomNav'
 
 export default {
   name: 'RegularNew',
-  components: {
-    RegularBottomNav
-  },
   data () {
     return {
-      value: '2017-08-06',
+      loading1: false,
       form: {
         book: '《》',
         rebook: '《》',
@@ -43,26 +29,13 @@ export default {
       },
       formRules: [
         { validate: (val) => !!val, message: '此处必须填写' }
-      ],
-      successMessage: {
-        color: 'success',
-        message: '发起成功活动',
-        open: false,
-        timeout: 3000
-      },
-      errorMessage: {
-        color: 'error',
-        message: '操作失败',
-        open: false,
-        timeout: 3000
-      }
-
+      ]
     }
   },
   methods: {
     // 发起新活动
     submit () {
-      this.axios.post('/newact', {
+      this.axios.post('/newact1', {
         book: this.form.book,
         rebook: this.form.rebook + '(备选)',
         begdate: this.form.begDate,
@@ -72,22 +45,22 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             console.log(response)
+            this.loading1 = true
+            setTimeout(() => {
+              this.loading1 = false
+            }, 1000)
             // 提示信息
-            if (this.successMessage.timer) clearTimeout(this.successMessage.timer)
-            this.successMessage.open = true
-            this.successMessage.timer = setTimeout(() => {
-              this.successMessage.open = false
-            }, this.successMessage.timeout)
+            this.$toast.success('活动创建成功')
             this.$router.push({name: '常规活动'})
           }
         })
         .catch((error) => {
           console.log(error)
-          if (this.errorMessage.timer) clearTimeout(this.errorMessage.timer)
-          this.errorMessage.open = true
-          this.errorMessage.timer = setTimeout(() => {
-            this.errorMessage.open = false
-          }, this.errorMessage.timeout)
+          this.loading1 = !this.loading1
+          setTimeout(() => {
+            this.loading1 = false
+          }, 1000)
+          this.$toast.error('活动创建失败')
         })
     }
   }

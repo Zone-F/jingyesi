@@ -1,8 +1,12 @@
 <template>
-  <div>
-    欢迎：{{ this.$store.state.user }}
-    <bottom-navigation></bottom-navigation>
-  </div>
+  <mu-flex direction="column" style="width: 100%;">
+    <mu-flex class="is-full-width" fill>
+      首页
+    </mu-flex>
+    <mu-flex  class="is-full-width" >
+      <bottom-navigation></bottom-navigation>
+    </mu-flex>
+  </mu-flex>
 </template>
 
 <script>
@@ -17,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .is-full-width{
+    width: 100%;
+  }
 </style>
