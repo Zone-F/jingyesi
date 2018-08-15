@@ -16,10 +16,10 @@
             <mu-text-field type="password" v-model="validateForm.repassword" prop="repassword"></mu-text-field>
           </mu-form-item>
           <mu-form-item>
-            <mu-button color="primary" @click="submit" style="width: 95%">注册</mu-button>
+            <mu-button color="cyan500" @click="submit" style="width: 95%">注册</mu-button>
           </mu-form-item>
           <mu-form-item>
-            <mu-button flat color="primary" to="/login" style="font-size: 17px">前往登陆</mu-button>
+            <mu-button flat color="cyan500" to="/login" style="font-size: 17px">前往登陆</mu-button>
           </mu-form-item>
         </mu-form>
       </mu-container>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import {Register} from "../api/IndexApi";
+
 export default {
   name: 'Register',
   data () {
@@ -57,16 +59,18 @@ export default {
       this.$refs.form.validate().then((result) => {
         if (result) {
           const loading = this.$loading({})
-          this.axios.post('/register', {
-            user: this.validateForm.username,
-            pass: this.validateForm.password,
-            email: this.validateForm.email
-          })
+          Register(this.validateForm.username, this.validateForm.password, this.validateForm.email)
             .then((response) => {
+              console.log(response)
               if (response.status === 200) {
                 loading.close()
                 // 提示信息
-                this.$toast.success('登录成功')
+                this.$toast.success(response.data.msg)
+              }
+              if (response.status === 201) {
+                loading.close()
+                // 提示信息
+                this.$toast.warning(response.data.msg)
               }
             })
             .catch((error) => {
@@ -92,5 +96,7 @@ export default {
 }
 .content{
   padding-top: 20%;
+  width: 100%;
+  height: calc(100vh - 56px);
 }
 </style>

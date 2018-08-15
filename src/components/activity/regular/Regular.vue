@@ -1,7 +1,7 @@
 <template>
   <mu-flex direction="column" style="width: 100%;height: 100%">
-    <mu-flex fill style="width: 100%">
-      <router-view></router-view>
+    <mu-flex fill style="width: 100%;" class="content">
+        <router-view></router-view>
     </mu-flex>
     <!--<div class="a">3</div>-->
       <!--底部菜单栏-->
@@ -26,4 +26,8 @@ export default {
 </script>
 
 <style scoped>
+  .content{
+    top: 0;
+    height: calc(100vh - 112px);
+  }
 </style>

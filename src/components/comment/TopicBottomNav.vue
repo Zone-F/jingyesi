@@ -21,4 +21,9 @@ export default {
     padding-right: 0;
     max-width: 100%;
   }
+  .mu-bottom-item-active{
+    padding-top: 6px;
+    padding-bottom: 5px;
+    color: #00bcd4;
+  }
 </style>

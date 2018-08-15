@@ -12,6 +12,7 @@
         <div v-for="article in info.articlelist" :key="article.id">
           <mu-button flat color="secondary"  @click="openArticle(article.body)">{{article.title}}</mu-button>
         </div>
+        <mu-button small color="cyan500">提交读后感</mu-button>
       </mu-expansion-panel>
     </div>
   </div>

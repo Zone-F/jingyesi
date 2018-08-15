@@ -1,6 +1,6 @@
 <template>
   <mu-container class="bootom-nav">
-    <mu-bottom-nav :value.sync=this.$route.name shift>
+    <mu-bottom-nav :value.sync=this.$route.name shift color="cyan500">
       <mu-bottom-nav-item value="首页" title="首页"  to="/" icon="home"></mu-bottom-nav-item>
       <mu-bottom-nav-item value="music" title="Music" to="/topic" icon="music_note"></mu-bottom-nav-item>
       <mu-bottom-nav-item value="books" title="Books" to="/login" icon="books"></mu-bottom-nav-item>

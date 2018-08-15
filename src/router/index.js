@@ -13,6 +13,9 @@ import TopicNew from 'components/activity/topic/TopicNew'
 import TopicNow from 'components/activity/topic/TopicNow'
 import TopicInfo from 'components/activity/topic/TopicInfo'
 import TopicOld from 'components/activity/topic/TopicOld'
+import NewArticle from 'components/action/NewArticle'
+import Article from 'components/action/Article'
+// import UpdataArticle from 'components/action/UpdataArticle'
 import User from 'components/User'
 import store from '../store/index'
 Vue.use(Router)
@@ -39,7 +42,7 @@ const router = new Router({
       component: Topic,
       children: [
         {path: 'new', name: '主题活动', component: TopicNew},
-        {path: '', name: '主题阅读', component: TopicNow},
+        {path: '', name: '主题阅读', component: TopicNow, meta: {requireAuth: true}},
         {path: 'info', name: '主题信息', component: TopicInfo},
         {path: 'old', name: '往期主题', component: TopicOld}
       ]
@@ -49,7 +52,7 @@ const router = new Router({
       component: Regular,
       children: [
         {path: 'new', name: '发起活动', component: RegularNew},
-        {path: '', name: '常规活动', component: RegularNow},
+        {path: '', name: '常规活动', component: RegularNow, meta: {requireAuth: true}},
         {path: 'info', name: '活动信息', component: RegularInfo},
         {path: 'old', name: '往期活动', component: RegularOld}
       ]
@@ -61,12 +64,25 @@ const router = new Router({
       meta: {
         requireAuth: true
       }
+    },
+    {
+      path: '/newarticle',
+      name: '写文章',
+      component: NewArticle,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/article/:id',
+      name: '文章',
+      component: Article
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  const user = store.state.user
+  const user = store.state.user.username
   if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
     if (user) { // 通过vuex state获取当前的用户名是否存在
       next()

@@ -1,6 +1,5 @@
 <template>
-    <div>
-      <mu-appbar style="width: 100%;" color="primary">
+      <mu-appbar class="my-style" color="cyan500">
         {{this.$route.name}}
         <mu-menu slot="right">
           <mu-button flat>MENU</mu-button>
@@ -28,8 +27,15 @@
             </mu-list-item>
             <mu-list-item
               button
+              to="/newarticle">
+              <mu-list-item-content>
+                <mu-list-item-title>写文章</mu-list-item-title>
+              </mu-list-item-content>
+            </mu-list-item>
+            <mu-list-item
+              button
               to="/login"
-              v-if="!this.$store.state.user"
+              v-if="!this.$store.state.user.username"
             >
               <mu-list-item-content>
                 <mu-list-item-title >登录/注册</mu-list-item-title>
@@ -41,13 +47,12 @@
               v-else
             >
               <mu-list-item-content>
-                <mu-list-item-title >{{this.$store.state.user}}</mu-list-item-title>
+                <mu-list-item-title >{{this.$store.state.user.username}}</mu-list-item-title>
               </mu-list-item-content>
             </mu-list-item>
           </mu-list>
         </mu-menu>
       </mu-appbar>
-    </div>
 </template>
 
 <script>
@@ -59,12 +64,16 @@ export default {
   },
   methods: {
     go () {
-      this.$router.push({name: '个人中心', params: {username: this.$store.state.user}})
+      this.$router.push({name: '个人中心', params: {username: this.$store.state.user.username || 'vip'}})
     }
   }
 }
 </script>
 
 <style scoped>
-
+.my-style{
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
 </style>
